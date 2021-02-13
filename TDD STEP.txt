@@ -1,0 +1,26 @@
+TEST DRIVEN DEVELOPMENT
+
+1.  menjalankan text di comand
+    "vendor/bin/phpunit"
+    tapi di sini sudah tak buat short cutnya yaitu "pu"
+2.  file testing di simpan di dalam test/Feature
+    saat awal ada satu tes bawaan ExampleTest
+
+3.  membuat test
+    "php artisan make:test ContactTest"
+
+4.  struktur method di test
+
+    use RefreshDatabase;                                    ->ini penting juga untuk me refresh database setiap kita jalankan test
+
+    /** @test */                                             -> wajib ada
+    public function a_contact_can_be_added(){
+        $this->withoutExceptionHandling();                      ->>> untuk mematikan laravel exeptionHandling terkadang berguna untuk melihat error yang sesungguhnya
+        $this->post('/api/contacts', ['name' => 'rahman']);         -> contoh url yang di test
+        $this->assertCount(1, Contact::all());                     ->>> ini hal yang di tes apakah return dari Contact::all() itu ada isinya setelah kita submit
+    }
+
+5.  menjalankan test
+    ada dua cara
+    "vendor/bin/phpunit"
+    "vendor/bin/phpunit --filter nama_method_test"
